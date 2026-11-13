@@ -12,14 +12,14 @@ Dieses Repo dient als Lern- und Experimentierumgebung für:
 - Policy-Gradient- / Actor-Critic-Ansätze (z. B. REINFORCE, PPO)
 - Training-Loops, Rewards und Episode-Metriken
 
-## Stack (geplant)
+## Stack
 
 | Komponente | Technologie |
 |------------|-------------|
 | Sprache | Rust |
-| ML / Autodiff | [Burn](https://burn.dev/) |
-| Umgebung | CartPole (eigene Simulation oder Gym-ähnlich) |
-| Backend | z. B. `NdArray` (CPU) oder `Wgpu` / `Cuda` |
+| Demo / Render | [macroquad](https://github.com/not-fl3/macroquad) |
+| ML / Autodiff | [Burn](https://burn.dev/) (geplant) |
+| Umgebung | CartPole (eigene Simulation, geplant) |
 
 ## Schnellstart
 
@@ -27,19 +27,19 @@ Dieses Repo dient als Lern- und Experimentierumgebung für:
 cargo run
 ```
 
-Erwartete Ausgabe: `Hello, world!`
+Öffnet ein Fenster: Schiene, Wagen, Stab. **A/D** oder **Pfeiltasten** bewegen den Wagen (noch ohne echte Physik).
+
+Kanban: [docs/status/status.md](docs/status/status.md)
 
 ## Status
 
-Frühphase — Cargo-Helloworld und Git-Grundgerüst. Training und CartPole-Umgebung folgen.
+macroquad-CartPole-Demo (manuell). Als Nächstes: Physik-Env, dann Burn-Training.
 
 ## Nächste Schritte
 
-1. Burn-Dependencies ergänzen
-2. CartPole-Umgebung (State, Action, Reward, Done) implementieren
-3. Einfaches Policy-Netzwerk in Burn bauen
-4. Training-Loop und Logging
-5. Optional: Visualisierung / Evaluation nach dem Training
+1. CartPole-Physik (`step(action)`)
+2. Burn Policy-Netz + Training
+3. Policy in der Demo evaluieren
 
 ## Lizenz
 

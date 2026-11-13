@@ -14,7 +14,7 @@ Last updated: 2026-11-13
 
 ## Current Phase
 
-Scaffold — Hello World + Git. **Fokus:** macroquad-Demo (Schiene/Wagen/Stab), danach Physik, dann Burn/Training.
+Viz-Demo — macroquad CartPole (manuell). **Als Nächstes:** Physik-Env, dann Burn/Training.
 
 ## Done
 
@@ -26,8 +26,7 @@ _(none)_
 
 ## Next Up
 
-- `[viz-macroquad-cartpole]` (viz) — macroquad-Fenster: Schiene, Wagen, Stab; State erst manuell/Tastatur
-  - **Acceptance:** `cargo run` zeigt CartPole-Look; links/rechts bewegt den Wagen (noch ohne echte Physik ok).
+_(leer — pick from Later)_
 
 ## Later (Backlog)
 
