@@ -26,11 +26,10 @@ _(none)_
 
 ## Next Up
 
-_(leer — pick from Later)_
+- `[env-cartpole-physics]` (env) — State `x, ẋ, θ, θ̇` + `step(action)`; Renderer nur zeichnen
 
 ## Later (Backlog)
 
-- `[env-cartpole-physics]` (env) — State `x, ẋ, θ, θ̇` + `step(action)`; Renderer nur zeichnen
 - `[rl-burn-policy]` (rl) — Burn Policy-Netz + Training-Loop (headless)
 - `[demo-eval-loop]` (demo) — trainierte Policy in macroquad-Eval einhängen
 - `[docs-readme-demo]` (docs) — README: Run-Demo, Train, Stack (Burn + macroquad)
