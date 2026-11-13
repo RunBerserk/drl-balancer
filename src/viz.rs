@@ -56,7 +56,7 @@ fn draw_hud(cart: &CartPole) {
         Color::from_rgba(200, 205, 215, 255),
     );
     draw_text(
-        &format!("x = {:+.2}   theta = {:+.2} rad", cart.x, cart.theta),
+        format!("x = {:+.2}   theta = {:+.2} rad", cart.x, cart.theta),
         16.0,
         54.0,
         20.0,
