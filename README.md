@@ -19,7 +19,7 @@ Dieses Repo dient als Lern- und Experimentierumgebung für:
 | Sprache | Rust |
 | Demo / Render | [macroquad](https://github.com/not-fl3/macroquad) |
 | ML / Autodiff | [Burn](https://burn.dev/) (geplant) |
-| Umgebung | CartPole (eigene Simulation, geplant) |
+| Umgebung | CartPole (Gym-Dynamik, `step(action)`) |
 
 ## Schnellstart
 
@@ -27,19 +27,22 @@ Dieses Repo dient als Lern- und Experimentierumgebung für:
 cargo run
 ```
 
-Öffnet ein Fenster: Schiene, Wagen, Stab. **A/D** oder **Pfeiltasten** bewegen den Wagen (noch ohne echte Physik).
+Öffnet ein Fenster mit Physik-Simulation. **A/D** / **Pfeiltasten** geben einen Schubs; ohne Eingabe fällt der Stab. **R** (oder **Space** nach Fail) startet neu.
+
+```bash
+cargo test
+```
 
 Kanban: [docs/status/status.md](docs/status/status.md)
 
 ## Status
 
-macroquad-CartPole-Demo (manuell). Als Nächstes: Physik-Env, dann Burn-Training.
+CartPole-Env + macroquad-Demo. Als Nächstes: Burn-Training.
 
 ## Nächste Schritte
 
-1. CartPole-Physik (`step(action)`)
-2. Burn Policy-Netz + Training
-3. Policy in der Demo evaluieren
+1. Burn Policy-Netz + Training
+2. Policy in der Demo evaluieren
 
 ## Lizenz
 

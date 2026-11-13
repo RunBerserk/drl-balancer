@@ -14,7 +14,7 @@ Last updated: 2026-11-13
 
 ## Current Phase
 
-Viz-Demo — macroquad CartPole (manuell). **Als Nächstes:** Physik-Env, dann Burn/Training.
+Physik-Env fertig — Demo steuert echte CartPole-Dynamik. **Als Nächstes:** Burn/Training.
 
 ## Done
 
@@ -26,7 +26,7 @@ _(none)_
 
 ## Next Up
 
-- `[env-cartpole-physics]` (env) — State `x, ẋ, θ, θ̇` + `step(action)`; Renderer nur zeichnen
+_(leer — pick from Later)_
 
 ## Later (Backlog)
 
