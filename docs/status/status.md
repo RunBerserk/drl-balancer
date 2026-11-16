@@ -2,36 +2,36 @@
 
 Last updated: 2026-11-16
 
-**Time invested:** ~0h _(Mensch — Agent nicht anfassen)_
+**Time invested:** ~0h _(human — agents must not edit)_
 
 <!-- AGENT-README:
-  In Progress = Mensch arbeitet hier per Hand. NICHT editieren, nicht als Aufgabe nehmen.
-  Next Up     = geordnete Warteschlange. Oberster Eintrag = nächster Agent-Schritt. Von oben nach unten.
-  Later       = Backlog. Nicht ohne Rückfrage starten.
-  Ticket-Format: `[id] (module) Titel` — id ist stabil, für Referenzen.
-  Done = done.md — status.md bleibt Kanban-Pipeline.
+  In Progress = human is working here by hand. Do NOT edit; do not take as a task.
+  Next Up     = ordered queue. Top entry = next agent step. Top to bottom.
+  Later       = backlog. Do not start without asking.
+  Ticket format: `[id] (module) Title` — id is stable, for references.
+  Done = done.md — status.md stays the Kanban pipeline.
 -->
 
 ## Current Phase
 
-Live-Eval: Demo lädt `artifacts/policy.mpk` und fährt greedy (P = Manual).
+Demo pipeline complete (env → train → eval). README covers run-demo, train, and stack.
 
 ## Done
 
-Siehe [done.md](done.md).
+See [done.md](done.md).
 
-## In Progress _(Mensch — Agent nicht anfassen)_
+## In Progress _(human — agents must not edit)_
 
 _(none)_
 
 ## Next Up
 
-_(leer — pick from Later)_
+_(empty)_
 
 ## Later (Backlog)
 
-- `[docs-readme-demo]` (docs) — README: Run-Demo, Train, Stack (Burn + macroquad)
+_(empty)_
 
 ## Gaps / Notes
 
-_(noch keine — bei Bedarf gaps.md / notes.md)_
+_(none yet — add gaps.md / notes.md if needed)_

@@ -69,7 +69,7 @@ fn draw_hud(
     };
 
     let hint = if cart.is_done() {
-        "Fallen / Schiene — R or Space to reset"
+        "Fallen / off rail — R or Space to reset"
     } else if agent_mode {
         "Agent driving  |  hold A/D to override  |  P manual  |  R reset"
     } else {

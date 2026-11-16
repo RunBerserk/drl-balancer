@@ -1,57 +1,91 @@
 # DRL Balancer
 
-Testprojekt für Deep Reinforcement Learning mit [Burn](https://burn.dev/) in Rust. Ziel: einen Agenten trainieren, der den klassischen **CartPole**-Balancierstab aufrecht hält.
-
-## Idee
-
-CartPole ist eine einfache Physiksimulation: Ein Wagen fährt auf einer Schiene, darauf steht ein Stab. Der Agent steuert den Wagen nach links oder rechts und soll den Stab möglichst lange im Gleichgewicht halten.
+Small learning/demo repo: **deep reinforcement learning** in Rust with [Burn](https://burn.dev/). An agent learns to balance the classic **CartPole**; the live demo uses [macroquad](https://github.com/not-fl3/macroquad).
 
 ## Stack
 
-| Komponente | Technologie |
-|------------|-------------|
-| Sprache | Rust |
-| Demo / Render | [macroquad](https://github.com/not-fl3/macroquad) |
-| ML / Autodiff | [Burn](https://burn.dev/) 0.21 (`ndarray` + autodiff) |
-| Umgebung | CartPole (Gym-Dynamik) |
-| Algorithmus | REINFORCE (Policy Gradient) |
+| Component | Technology |
+|-----------|------------|
+| Language | Rust (edition 2024) |
+| Env | Custom CartPole sim (Gym params: τ=0.02, ±10 N, fail if \|x\|>2.4 or \|θ\|>12°) |
+| ML | [Burn](https://burn.dev/) 0.21 — `ndarray` + `autodiff` backends |
+| Policy | MLP `4 → 64 → 2` (REINFORCE) |
+| Demo / render | [macroquad](https://github.com/not-fl3/macroquad) 0.4 |
+| Lint | `warnings = deny`, `clippy::all = deny` |
 
-## Schnellstart
+Binaries:
 
-### Training
+| Command | Binary | Role |
+|---------|--------|------|
+| `cargo run` | `drl-balancer` (default) | macroquad demo |
+| `cargo run --release --bin train` | `train` | headless training |
+
+## Requirements
+
+- Rust toolchain (edition 2024 / recent stable)
+- Display for the demo window
+- Training runs headless on CPU (`ndarray`)
+
+## Run: demo
+
+Train first (or reuse existing weights), then:
+
+```bash
+cargo run
+# equivalent: cargo run --bin drl-balancer
+```
+
+If `artifacts/policy.mpk` exists, the demo starts in **agent mode** (greedy argmax). Otherwise it stays manual (console hint).
+
+| Key | Action |
+|-----|--------|
+| **P** | Toggle agent ↔ manual (only if a policy is loaded) |
+| **A/D** or arrow keys | Push; override while in agent mode |
+| **R** | Reset episode |
+| **Space** | Reset after failure |
+
+In agent mode: auto-reset ~1 s after failure, or after 500 steps (Gym cap).
+
+## Run: training
 
 ```bash
 cargo run --release --bin train
 ```
 
-Speichert die Policy nach `artifacts/policy.mpk`.
+- Algorithm: **REINFORCE** (Adam, return normalization, grad clip)
+- Early stop when moving-average reward ≥ **475** (else max 400 episodes)
+- Writes weights to **`artifacts/policy.mpk`** (`artifacts/` is gitignored)
 
-### Demo (Agent oder manuell)
+Typical (release, CPU): solved within a few minutes.
 
-```bash
-cargo run
-```
-
-Wenn `artifacts/policy.mpk` existiert, startet die Demo im **Agent-Modus** (greedy).
-
-| Taste | Aktion |
-|-------|--------|
-| **P** | Agent ↔ manuell umschalten |
-| **A/D** / Pfeile | Schub (manuell, oder Override im Agent-Modus) |
-| **R** / **Space** | Reset |
-
-Ohne Policy-Datei: nur manuell (Hinweis in der Konsole).
+## Tests
 
 ```bash
 cargo test
+cargo clippy --all-targets
 ```
+
+## Layout
+
+```
+src/
+  cartpole.rs   # physics / step(action)
+  policy.rs     # Burn PolicyNet
+  train.rs      # REINFORCE loop
+  agent.rs      # inference: load policy.mpk
+  demo.rs       # demo loop
+  viz.rs        # macroquad drawing
+  bin/train.rs  # training entry
+  main.rs       # demo entry
+docs/status/    # Kanban (status.md / done.md)
+```
+
+## Project status
 
 Kanban: [docs/status/status.md](docs/status/status.md)
 
-## Status
+Demo pipeline complete: env → train → live eval.
 
-Env + REINFORCE-Training + Live-Eval in macroquad.
+## License
 
-## Lizenz
-
-Noch offen.
+TBD.
