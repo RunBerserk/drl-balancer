@@ -19,3 +19,10 @@
 - [x] 2. Gym-Parameter (τ=0.02, Force ±10, Fail bei |x|>2.4 oder |θ|>12°)
 - [x] 3. Demo: Fixed-Timestep, Tastatur → Force, Reset R/Space
 - [x] 4. Unit-Tests; Viz nur Renderer
+
+## RL: Burn Policy + Training `[rl-burn-policy]`
+
+- [x] 1. Lib-Layout: `cartpole` / `policy` / `train`; Binary `train`
+- [x] 2. Burn 0.21 Policy-MLP (4→64→2) auf `Autodiff<NdArray>`
+- [x] 3. REINFORCE-Loop (Adam, Return-Norm, Early-Stop avg≥475)
+- [x] 4. Speichert `artifacts/policy.mpk`; README Training-Abschnitt

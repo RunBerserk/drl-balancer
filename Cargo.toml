@@ -4,7 +4,17 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+burn = { version = "0.21", default-features = false, features = ["std", "ndarray", "autodiff"] }
 macroquad = "0.4"
+rand = "0.9"
+
+[[bin]]
+name = "drl-balancer"
+path = "src/main.rs"
+
+[[bin]]
+name = "train"
+path = "src/bin/train.rs"
 
 [lints.rust]
 warnings = "deny"

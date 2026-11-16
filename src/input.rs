@@ -1,6 +1,6 @@
 use macroquad::prelude::*;
 
-use crate::cartpole::Action;
+use drl_balancer::cartpole::Action;
 
 /// Keyboard action: Left / Right, or `None` if no key held.
 pub fn action() -> Option<Action> {

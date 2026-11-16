@@ -1,6 +1,6 @@
 use macroquad::prelude::*;
 
-use crate::cartpole::{CartPole, CART_H, CART_W, POLE_LEN, RAIL_HALF};
+use drl_balancer::cartpole::{CartPole, CART_H, CART_W, POLE_LEN, RAIL_HALF};
 
 const PIXELS_PER_UNIT: f32 = 120.0;
 

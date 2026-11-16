@@ -1,4 +1,3 @@
-mod cartpole;
 mod demo;
 mod input;
 mod viz;

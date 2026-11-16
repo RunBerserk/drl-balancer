@@ -1,6 +1,6 @@
 # Project Status
 
-Last updated: 2026-11-13
+Last updated: 2026-11-16
 
 **Time invested:** ~0h _(Mensch — Agent nicht anfassen)_
 
@@ -14,7 +14,7 @@ Last updated: 2026-11-13
 
 ## Current Phase
 
-Physik-Env fertig — Demo steuert echte CartPole-Dynamik. **Als Nächstes:** Burn/Training.
+Burn-REINFORCE trainiert headless und speichert `artifacts/policy.mpk`. **Als Nächstes:** Policy in der macroquad-Demo.
 
 ## Done
 
@@ -30,7 +30,6 @@ _(leer — pick from Later)_
 
 ## Later (Backlog)
 
-- `[rl-burn-policy]` (rl) — Burn Policy-Netz + Training-Loop (headless)
 - `[demo-eval-loop]` (demo) — trainierte Policy in macroquad-Eval einhängen
 - `[docs-readme-demo]` (docs) — README: Run-Demo, Train, Stack (Burn + macroquad)
 

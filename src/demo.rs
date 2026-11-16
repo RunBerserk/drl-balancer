@@ -1,6 +1,6 @@
 use macroquad::prelude::*;
 
-use crate::cartpole::{CartPole, TAU};
+use drl_balancer::cartpole::{CartPole, TAU};
 use crate::input;
 use crate::viz;
 

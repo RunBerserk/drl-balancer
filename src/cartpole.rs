@@ -25,6 +25,15 @@ pub const CART_H: f32 = 0.3;
 /// Fixed integration step (Gym default).
 pub const TAU: f32 = 0.02;
 
+/// Observation size: `x, x_dot, theta, theta_dot`.
+pub const OBS_DIM: usize = 4;
+
+/// Discrete actions: Left / Right.
+pub const N_ACTIONS: usize = 2;
+
+/// Gym CartPole-v1 episode length cap.
+pub const MAX_STEPS: usize = 500;
+
 const GRAVITY: f32 = 9.8;
 const MASS_CART: f32 = 1.0;
 const MASS_POLE: f32 = 0.1;
@@ -56,6 +65,16 @@ impl CartPole {
         self.x_dot = x_dot;
         self.theta = theta;
         self.theta_dot = theta_dot;
+    }
+
+    /// Small uniform noise in `[-0.05, 0.05]` (Gym-style).
+    pub fn reset_random(&mut self, rng: &mut impl rand::Rng) {
+        let mut noise = || rng.random_range(-0.05_f32..0.05);
+        self.reset_to(noise(), noise(), noise(), noise());
+    }
+
+    pub fn observation(&self) -> [f32; OBS_DIM] {
+        [self.x, self.x_dot, self.theta, self.theta_dot]
     }
 
     pub fn is_done(&self) -> bool {
