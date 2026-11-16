@@ -16,3 +16,7 @@ pub fn action() -> Option<Action> {
 pub fn reset_pressed() -> bool {
     is_key_pressed(KeyCode::R)
 }
+
+pub fn toggle_agent_pressed() -> bool {
+    is_key_pressed(KeyCode::P)
+}

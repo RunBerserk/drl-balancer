@@ -26,3 +26,10 @@
 - [x] 2. Burn 0.21 Policy-MLP (4→64→2) auf `Autodiff<NdArray>`
 - [x] 3. REINFORCE-Loop (Adam, Return-Norm, Early-Stop avg≥475)
 - [x] 4. Speichert `artifacts/policy.mpk`; README Training-Abschnitt
+
+## Demo: Policy Eval `[demo-eval-loop]`
+
+- [x] 1. `agent::Agent` lädt `artifacts/policy.mpk` (NdArray inference)
+- [x] 2. Demo startet im Agent-Modus wenn Weights da; **P** toggelt Manual
+- [x] 3. Greedy-Actions; Tastatur-Override; Auto-Reset nach Fail / 500 Steps
+- [x] 4. HUD Mode-Anzeige; Load-Test wenn Artifact vorhanden

@@ -7,6 +7,12 @@ use burn::{
 
 use crate::cartpole::{N_ACTIONS, OBS_DIM};
 
+/// Hidden width used by training and eval (must match saved weights).
+pub const POLICY_HIDDEN: usize = 64;
+
+/// Path stem for CompactRecorder (`artifacts/policy.mpk`).
+pub const POLICY_ARTIFACT: &str = "artifacts/policy";
+
 #[derive(Module, Debug)]
 pub struct PolicyNet<B: Backend> {
     fc1: Linear<B>,

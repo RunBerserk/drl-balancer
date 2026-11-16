@@ -18,21 +18,29 @@ CartPole ist eine einfache Physiksimulation: Ein Wagen fährt auf einer Schiene,
 
 ## Schnellstart
 
-### Manuelle Demo
-
-```bash
-cargo run
-```
-
-**A/D** / **Pfeiltasten** schubsen den Wagen; **R** (oder **Space** nach Fail) reset.
-
-### Headless Training
+### Training
 
 ```bash
 cargo run --release --bin train
 ```
 
-Trainiert eine Policy mit REINFORCE und speichert nach `artifacts/policy.mpk` (wenn Moving-Average-Reward ≥ 475 oder nach max. Episoden).
+Speichert die Policy nach `artifacts/policy.mpk`.
+
+### Demo (Agent oder manuell)
+
+```bash
+cargo run
+```
+
+Wenn `artifacts/policy.mpk` existiert, startet die Demo im **Agent-Modus** (greedy).
+
+| Taste | Aktion |
+|-------|--------|
+| **P** | Agent ↔ manuell umschalten |
+| **A/D** / Pfeile | Schub (manuell, oder Override im Agent-Modus) |
+| **R** / **Space** | Reset |
+
+Ohne Policy-Datei: nur manuell (Hinweis in der Konsole).
 
 ```bash
 cargo test
@@ -42,7 +50,7 @@ Kanban: [docs/status/status.md](docs/status/status.md)
 
 ## Status
 
-CartPole-Env, macroquad-Demo, Burn-REINFORCE-Training. Als Nächstes: trainierte Policy in der Demo evaluieren.
+Env + REINFORCE-Training + Live-Eval in macroquad.
 
 ## Lizenz
 

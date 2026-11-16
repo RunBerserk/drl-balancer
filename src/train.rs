@@ -14,22 +14,20 @@ use burn::{
 use rand::Rng;
 
 use crate::cartpole::{Action, CartPole, MAX_STEPS};
-use crate::policy::PolicyNet;
+use crate::policy::{PolicyNet, POLICY_ARTIFACT, POLICY_HIDDEN};
 
 type B = Autodiff<NdArray>;
 type Device = <NdArray as BackendTypes>::Device;
 
-const HIDDEN: usize = 64;
 const LR: f64 = 1e-2;
 const GAMMA: f32 = 0.99;
 const EPISODES: usize = 400;
 const LOG_EVERY: usize = 20;
 const SOLVE_REWARD: f32 = 475.0;
-const ARTIFACT: &str = "artifacts/policy";
 
 pub fn run() {
     let device = Default::default();
-    let mut policy = PolicyNet::<B>::new(HIDDEN, &device);
+    let mut policy = PolicyNet::<B>::new(POLICY_HIDDEN, &device);
     let mut optim = AdamConfig::new()
         .with_grad_clipping(Some(GradientClippingConfig::Norm(0.5)))
         .init();
@@ -38,7 +36,7 @@ pub fn run() {
     let mut best = 0.0_f32;
     let mut window = 0.0_f32;
 
-    println!("REINFORCE CartPole — {EPISODES} episodes, lr={LR}, hidden={HIDDEN}");
+    println!("REINFORCE CartPole — {EPISODES} episodes, lr={LR}, hidden={POLICY_HIDDEN}");
 
     for ep in 1..=EPISODES {
         let (reward, loss) = train_episode(&mut policy, &mut optim, &mut rng, &device);
@@ -62,7 +60,7 @@ pub fn run() {
     }
 
     save_policy(&policy, &device);
-    println!("saved policy → {ARTIFACT}.mpk");
+    println!("saved policy → {POLICY_ARTIFACT}.mpk");
 }
 
 fn train_episode(
@@ -147,6 +145,6 @@ fn save_policy(policy: &PolicyNet<B>, _device: &Device) {
     // Save inner (non-autodiff) weights for later inference.
     let inner = policy.valid();
     recorder
-        .record(inner.into_record(), ARTIFACT.into())
+        .record(inner.into_record(), POLICY_ARTIFACT.into())
         .expect("save policy");
 }

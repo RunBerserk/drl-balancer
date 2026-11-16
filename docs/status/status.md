@@ -14,7 +14,7 @@ Last updated: 2026-11-16
 
 ## Current Phase
 
-Burn-REINFORCE trainiert headless und speichert `artifacts/policy.mpk`. **Als Nächstes:** Policy in der macroquad-Demo.
+Live-Eval: Demo lädt `artifacts/policy.mpk` und fährt greedy (P = Manual).
 
 ## Done
 
@@ -30,7 +30,6 @@ _(leer — pick from Later)_
 
 ## Later (Backlog)
 
-- `[demo-eval-loop]` (demo) — trainierte Policy in macroquad-Eval einhängen
 - `[docs-readme-demo]` (docs) — README: Run-Demo, Train, Stack (Burn + macroquad)
 
 ## Gaps / Notes

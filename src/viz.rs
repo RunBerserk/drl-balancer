@@ -4,10 +4,16 @@ use drl_balancer::cartpole::{CartPole, CART_H, CART_W, POLE_LEN, RAIL_HALF};
 
 const PIXELS_PER_UNIT: f32 = 120.0;
 
-pub fn draw(cart: &CartPole, steps_alive: u32, episode_reward: f32) {
+pub fn draw(
+    cart: &CartPole,
+    steps_alive: u32,
+    episode_reward: f32,
+    agent_mode: bool,
+    policy_loaded: bool,
+) {
     clear_background(Color::from_rgba(24, 28, 36, 255));
     draw_scene(cart);
-    draw_hud(cart, steps_alive, episode_reward);
+    draw_hud(cart, steps_alive, episode_reward, agent_mode, policy_loaded);
 }
 
 fn world_to_screen(wx: f32, wy: f32) -> (f32, f32) {
@@ -47,20 +53,44 @@ fn draw_scene(cart: &CartPole) {
     draw_circle(tx, ty, 7.0, Color::from_rgba(240, 200, 80, 255));
 }
 
-fn draw_hud(cart: &CartPole, steps_alive: u32, episode_reward: f32) {
+fn draw_hud(
+    cart: &CartPole,
+    steps_alive: u32,
+    episode_reward: f32,
+    agent_mode: bool,
+    policy_loaded: bool,
+) {
+    let mode = if !policy_loaded {
+        "manual (no policy.mpk)"
+    } else if agent_mode {
+        "agent"
+    } else {
+        "manual"
+    };
+
     let hint = if cart.is_done() {
         "Fallen / Schiene — R or Space to reset"
+    } else if agent_mode {
+        "Agent driving  |  hold A/D to override  |  P manual  |  R reset"
     } else {
-        "A/D or Left/Right — push  |  R — reset"
+        "A/D or arrows — push  |  P agent  |  R reset"
     };
-    draw_text(hint, 16.0, 28.0, 22.0, Color::from_rgba(200, 205, 215, 255));
+
+    draw_text(
+        format!("mode: {mode}"),
+        16.0,
+        28.0,
+        22.0,
+        Color::from_rgba(200, 205, 215, 255),
+    );
+    draw_text(hint, 16.0, 54.0, 18.0, Color::from_rgba(160, 170, 185, 255));
     draw_text(
         format!(
             "steps {steps_alive}  reward {episode_reward:.0}   x={:+.2}  dx={:+.2}  th={:+.2}  dth={:+.2}",
             cart.x, cart.x_dot, cart.theta, cart.theta_dot
         ),
         16.0,
-        54.0,
+        78.0,
         18.0,
         Color::from_rgba(160, 170, 185, 255),
     );
