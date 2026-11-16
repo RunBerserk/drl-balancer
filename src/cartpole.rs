@@ -42,7 +42,12 @@ const TOTAL_MASS: f32 = MASS_CART + MASS_POLE;
 const LENGTH: f32 = 0.5;
 const POLEMASS_LENGTH: f32 = MASS_POLE * LENGTH;
 const FORCE_MAG: f32 = 10.0;
-const THETA_THRESHOLD: f32 = 12.0 * 2.0 * std::f32::consts::PI / 360.0;
+/// Fail angle (±12°), Gym CartPole-v1.
+const THETA_THRESHOLD: f32 = 12.0_f32.to_radians();
+/// Uniform-rod inertia about the pivot: `I = (1/3) m (2ℓ)² = (4/3) m ℓ²`.
+/// Appears in the θ̈ denominator as the factor `4/3` (Barto–Sutton–Anderson / Gym).
+const POLE_INERTIA_FACTOR: f32 = 4.0 / 3.0;
+const RESET_NOISE: f32 = 0.05;
 
 #[derive(Clone, Copy, Debug)]
 pub struct StepResult {
@@ -67,9 +72,9 @@ impl CartPole {
         self.theta_dot = theta_dot;
     }
 
-    /// Small uniform noise in `[-0.05, 0.05]` (Gym-style).
+    /// Small uniform noise in `±`[`RESET_NOISE`] (Gym-style).
     pub fn reset_random(&mut self, rng: &mut impl rand::Rng) {
-        let mut noise = || rng.random_range(-0.05_f32..0.05);
+        let mut noise = || rng.random_range(-RESET_NOISE..RESET_NOISE);
         self.reset_to(noise(), noise(), noise(), noise());
     }
 
@@ -98,10 +103,12 @@ impl CartPole {
         let cos_theta = self.theta.cos();
         let sin_theta = self.theta.sin();
 
+        // Coupled cart–pole equations (Gym / Barto–Sutton–Anderson).
         let temp =
             (force + POLEMASS_LENGTH * self.theta_dot.powi(2) * sin_theta) / TOTAL_MASS;
+        let pole_mass_ratio = MASS_POLE * cos_theta.powi(2) / TOTAL_MASS;
         let theta_acc = (GRAVITY * sin_theta - cos_theta * temp)
-            / (LENGTH * (4.0 / 3.0 - MASS_POLE * cos_theta.powi(2) / TOTAL_MASS));
+            / (LENGTH * (POLE_INERTIA_FACTOR - pole_mass_ratio));
         let x_acc = temp - POLEMASS_LENGTH * theta_acc * cos_theta / TOTAL_MASS;
 
         self.x += TAU * self.x_dot;

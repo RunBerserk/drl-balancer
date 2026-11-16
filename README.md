@@ -94,4 +94,4 @@ Demo pipeline complete: env → train → live eval.
 
 ## License
 
-TBD.
+[MIT](LICENSE)
