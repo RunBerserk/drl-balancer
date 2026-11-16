@@ -28,14 +28,20 @@ Binaries:
 
 ## Run: demo
 
-Train first (or reuse existing weights), then:
+Without weights, train first (writes `artifacts/policy.mpk`):
+
+```bash
+cargo run --release --bin train
+```
+
+Then start the demo:
 
 ```bash
 cargo run
 # equivalent: cargo run --bin drl-balancer
 ```
 
-If `artifacts/policy.mpk` exists, the demo starts in **agent mode** (greedy argmax). Otherwise it stays manual (console hint).
+If `artifacts/policy.mpk` exists, the demo starts in **agent mode** (greedy argmax). Otherwise it stays manual (console hint: train as above).
 
 | Key | Action |
 |-----|--------|
