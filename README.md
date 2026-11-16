@@ -2,6 +2,8 @@
 
 Small learning/demo repo: **deep reinforcement learning** in Rust with [Burn](https://burn.dev/). An agent learns to balance the classic **CartPole**; the live demo uses [macroquad](https://github.com/not-fl3/macroquad).
 
+![CartPole demo in agent mode](assets/demo.png)
+
 ## Stack
 
 | Component | Technology |
@@ -83,6 +85,7 @@ src/
   viz.rs        # macroquad drawing
   bin/train.rs  # training entry
   main.rs       # demo entry
+assets/         # README screenshots
 docs/status/    # Kanban (status.md / done.md)
 ```
 
